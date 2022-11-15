@@ -1,0 +1,19 @@
+.sign{
+    position: absolute;
+    border: 10px solid black;
+    display:inline-block;
+   margin-top: 10%;
+    margin-left: 38%;
+    justify-content: center;
+}
+.login{
+    position: absolute;
+    
+    border: 10px solid black;
+    display:inline-block;
+    height: 50%;
+    width: 20%;
+   margin-top: 10%;
+    margin-left: 38%;
+    justify-content: center;
+}
