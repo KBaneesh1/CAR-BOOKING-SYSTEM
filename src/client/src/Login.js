@@ -1,8 +1,9 @@
 import React,{useState} from "react";
 import './signin.css';
 import axios from "axios";
-import { useNavigate } from "react-router-dom";
-const Login=()=>{
+import {useNavigate} from "react-router-dom";
+import SignUp from "./SignUp";
+const Login=(setappuser)=>{
     const [user,setUser]=useState({
         email:"",password:""
       })
@@ -18,7 +19,9 @@ const Login=()=>{
         const {email,password}=user
         if( email && password){
           axios.post("http://localhost:5000/login",user)
-          .then(res=>navigate('/'))
+          .then(res=>{console.log(res);
+        navigate('/');
+      })
 
         }
         else{
@@ -26,6 +29,9 @@ const Login=()=>{
         }
       
         
+      }
+      const handlenav=()=>{
+        navigate('/SignUp');
       }
         return(
             <div className="login">
@@ -40,12 +46,15 @@ const Login=()=>{
     <label for="exampleInputPassword1" class="form-label">Password</label>
     <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="ENTER PASSWORD" required onChange={onHandleChange}/>
   </div>
-  <br/>
+  
   
 
   <center><button type="submit" class="btn btn-primary" onClick={postdata} >LOGIN</button></center>
+          <br/>
+          
+  <center><button type="submit" class="btn btn-primary" onClick={handlenav} >REGISTER</button></center>
 
-                
+
             </div>
         )
     }
