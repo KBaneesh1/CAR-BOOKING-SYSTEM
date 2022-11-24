@@ -8,7 +8,7 @@ const SignUp=()=>{
     username:"",email:"",password:"",confirmpass:""
   })
   let name,value;
- const navigate=useNavigate()
+ const navigate=useNavigate();
   const onHandleChange=(e)=>{
     name=e.target.name;
     value=e.target.value;
@@ -17,10 +17,18 @@ const SignUp=()=>{
   }
   const postdata=async(e)=>{
     const {username,email,password,confirmpass}=user
-    if(username && email && (password===confirmpass)){
+    if(username && email && (password===confi_rmpass)){
       axios.post("http://localhost:5000/signUp",user)
-      .then(res=>console.log("response"))
-      .then(navigate('/Login'))
+      .then(res=>{
+        if(res.data.message==="already registered email"){
+          alert('TRY WITH NEW EMAIL')
+        }
+        else{
+          alert('successfully registered')
+          navigate('/Login');
+        }
+      })
+      
     }
     else{
       alert("invlid input:",user)

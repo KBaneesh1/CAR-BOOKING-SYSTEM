@@ -9,7 +9,7 @@ import { useState } from "react";
 import { BrowserRouter as Router,Route,Routes} from "react-router-dom"; //browser-router is for the browsing history in the browser
 import Booking from "./Booking";
 function App(){
-	const [user,setuser]=useState({});
+	const [user,setappuser]=useState({});
 
 	return(
 		<Router>
@@ -21,12 +21,13 @@ function App(){
           <Route exact path="/" element={<Home/>}/>
 		}
 		else{
-				<Route path="/Login" element={<Login setuser={setuser}/>}/>
+				<Route path="/Login" element={<Login setuser={setappuser}/>}/>
 		}
 				<Route path="/Booking" element={<Booking/>}/>
 
 				<Route path="/SignUp" element={<SignUp/>}/>
-				<Route path="/Login" element={<Login setuser={setuser}/>}/>
+				<Route path="/Login" element={<Login setuser={setappuser}/>}/>
+				console.log("app:",user);
         </Routes>
 		</Router>
 
