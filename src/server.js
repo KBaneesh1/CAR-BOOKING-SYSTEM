@@ -29,7 +29,8 @@ app.post('/signUp',async(req,res)=>{
         user_coll.findOne({email:email},(err,docs)=>{
             if(err) throw err;
             if(docs){
-                console.log("alreaady registered email ")
+                res.send({message:"already registered email",user:user})
+
             }
             else{
                 user_coll.insertOne(user,(err,docs)=>{
@@ -37,10 +38,10 @@ app.post('/signUp',async(req,res)=>{
                     console.log(docs+" appended");
                 })}
         
-        res.end() 
+            res.end()
             })
-
         
+       
     })
 })  
 
@@ -50,30 +51,41 @@ app.post('/login',async(req,res)=>{
     console.log(req.body)
     console.log("user:",email,password)
     const user=req.body
-
+    var msg;
     MongoCLient.connect('mongodb://localhost:27017',(err,dbo)=>{
         if(err) throw err;
         var coll=dbo.db('admin')
         user_coll=coll.collection('user_auth')
         var find=true
+       
         user_coll.findOne({email:email},(err,docs)=>{
             if(err) throw err;
             if(docs){
                 if(docs.password===password){
-                console.log("login successfull")}
+                console.log('login successfull')
+                msg="login successfull"}
                 else{
-                    console.log("invalid password")
+                    console.log('invalid password')
+                    msg="invalid password"
                 }
             }
             else{
-                console.log("NO usere found");
+                console.log('NO USERS FOUND');
+                msg="NO USERS FOUND";
+                
                 }
-            })     
-        res.end() 
+            
+            if(msg!=undefined){
+                    console.log(msg)
+                    res.send({message:msg,user});}   
+                    res.end() 
             })
-
-        
-    })
+            
+            })  
+           
+            })
+            
+    
 
         // let obj=body.split("&");
     // console.log(req.body);
