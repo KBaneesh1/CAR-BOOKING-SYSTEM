@@ -5,7 +5,7 @@ import {useNavigate} from "react-router-dom";
 import SignUp from "./SignUp";
 import 'bootstrap';
 import { Validator } from "react";
-const Login=(setappuser)=>{
+const Login=({setLoginUser})=>{
     const [user,setUser]=useState({
         email:"",password:""
       })
@@ -26,7 +26,8 @@ const Login=(setappuser)=>{
          axios.post("http://localhost:5000/login",user).then(res=>{
           alert(res.data.message) 
           if(res.data.message==="login successfull"){
-            setappuser(res.data.user)
+            setLoginUser({email,password})
+            console.log("going next")
             navigate('/')
           }
         else if(res.data.message==="NO USERS FOUND"){
@@ -41,9 +42,7 @@ const Login=(setappuser)=>{
       
         
       }
-      const handlenav=()=>{
-        navigate('/SignUp');
-      }
+      
         return(
             <div className="login">
                 <br></br>
@@ -65,7 +64,7 @@ const Login=(setappuser)=>{
   <center><button type="submit" class="btn btn-primary" onClick={postdata} >LOGIN</button></center>
           
     <center><label color="red">OR</label></center>
-  <center><button type="submit" class="btn btn-primary" onClick={handlenav} >REGISTER</button></center>
+  <center><button type="submit" class="btn btn-primary" onClick={()=>{navigate('/SignUp')}} >REGISTER</button></center>
 
   </form>
             </div>

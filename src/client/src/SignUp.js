@@ -17,11 +17,11 @@ const SignUp=()=>{
   }
   const postdata=async(e)=>{
     const {username,email,password,confirmpass}=user
-    if(username && email && (password===confi_rmpass)){
+    if(username && email && (password===confirmpass)){
       axios.post("http://localhost:5000/signUp",user)
       .then(res=>{
         if(res.data.message==="already registered email"){
-          alert('TRY WITH NEW EMAIL')
+          alert('ALREADY REGISTERED MAIL , PLEASE TRY WITH NEW EMAIL')
         }
         else{
           alert('successfully registered')
