@@ -17,7 +17,7 @@ export default class NavLinCom extends Component{
     <div>
       <Navbar bg="dark" variant="dark">
         <Container>
-          <Navbar.Brand href="#home">Navbar</Navbar.Brand>
+          <Navbar.Brand href="#home">BIN LADEN CARS</Navbar.Brand>
           <Nav className="me-auto">
             <Nav.Link as={Link} to={"/"}>Home</Nav.Link>
             <Nav.Link as={Link} to={"/Booking"}>Booking</Nav.Link>

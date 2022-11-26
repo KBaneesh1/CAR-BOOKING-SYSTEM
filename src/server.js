@@ -90,5 +90,16 @@ app.post('/login',async(req,res)=>{
         // let obj=body.split("&");
     // console.log(req.body);
 
-
+app.get('/cardet',async(req,res)=>{
+    console.log("inside car details")
+    var emp={}
+    MongoCLient.connect('mongodb://localhost:27017',(err,dbo)=>{
+        if(err) throw err;
+        car_db=dbo.db('car_list')
+        car_coll=car_db.collection('car_details')
+        const docs= car_coll.find(); 
+        
+         res.send(docs)
+})
+})
 app.listen(5000,()=>console.log("server is listening at 5000"));

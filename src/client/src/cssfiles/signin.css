@@ -1,0 +1,50 @@
+
+.auth-form-container, .login-form, .register-form {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    width: 50%;
+    background-image:url(car_wallpaper.webp);
+    
+
+  }
+  
+  @media screen and (min-width: 600px) {
+    .auth-form-container {
+        display: flex;
+  min-height: 100vh;
+      padding: 5rem;
+      border: 2px solid black;  /*Border for box  */
+      border-radius: 10px;
+      margin: 0.5rem;
+      color: black;
+    
+    }
+  }
+  label {
+    text-align: left;
+    padding: 0.25rem 0;
+  }
+  
+  input {
+    margin: 0.5rem 0;
+    padding: 1rem;
+    border: none;
+    border-radius: 10px;
+  }
+  
+  button {
+    /* Login and register button*/
+    border: none;
+    background-color: black;  
+    padding: 20px;
+    border-radius: 10px;
+    cursor: pointer;
+    color: white;
+  }
+  
+  .link-btn {
+    background: none;
+    color: rgba(14, 25, 226, 0.79);
+    text-decoration: underline;
+  }

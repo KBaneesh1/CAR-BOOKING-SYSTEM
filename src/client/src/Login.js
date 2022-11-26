@@ -1,5 +1,5 @@
 import React,{useState} from "react";
-import './signin.css';
+import './cssfiles/signin.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import SignUp from "./SignUp";
@@ -44,30 +44,41 @@ const Login=({setLoginUser})=>{
       }
       
         return(
-            <div className="login">
-                <br></br>
-                <h3>LOGIN</h3>
-                <br/>
-                <form>
-                <div class="mb-3">
+  //           <div className="login">
+  //               <br></br>
+  //               <h3>LOGIN</h3>
+  //               <br/>
+  //               <form>
+  //               <div class="mb-3">
                 
-    <label for="exampleInputEmail1" class="form-label">Email address</label>
-    <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="ENTER EMAIL" required onChange={onHandleChange}/>
-  </div>
-  <div class="mb-3">
-    <label for="exampleInputPassword1" class="form-label">Password</label>
-    <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="ENTER PASSWORD" required onChange={onHandleChange}/>
-  </div>
+  //   <label for="exampleInputEmail1" class="form-label">Email address</label>
+  //   <input type="email" class="form-control" id="exampleInputEmail1" aria-describedby="emailHelp" name="email" placeholder="ENTER EMAIL" required onChange={onHandleChange}/>
+  // </div>
+  // <div class="mb-3">
+  //   <label for="exampleInputPassword1" class="form-label">Password</label>
+  //   <input type="password" class="form-control" id="exampleInputPassword1" name="password" placeholder="ENTER PASSWORD" required onChange={onHandleChange}/>
+  // </div>
   
   
 
-  <center><button type="submit" class="btn btn-primary" onClick={postdata} >LOGIN</button></center>
+  // <center><button type="submit" class="btn btn-primary" onClick={postdata} >LOGIN</button></center>
           
-    <center><label color="red">OR</label></center>
-  <center><button type="submit" class="btn btn-primary" onClick={()=>{navigate('/SignUp')}} >REGISTER</button></center>
+  //   <center><label color="red">OR</label></center>
+  // <center><button type="submit" class="btn btn-primary" onClick={()=>{navigate('/SignUp')}} >REGISTER</button></center>
 
-  </form>
-            </div>
+  // </form>
+  //           </div>
+  <div className="auth-form-container">
+            <h2>Login</h2>
+            <form className="login-form" onSubmit={postdata}>
+                <label htmlFor="email">E-mail</label>
+                <input onChange={onHandleChange} type="email" placeholder="ENTER EMAIL" id="email" name="email" />
+                <label htmlFor="password">Password</label>
+                <input onChange={onHandleChange} type="password" placeholder="ENTER PASSWORD" id="password" name="password" />
+                <button type="submit">Log In</button>
+            </form>
+            <button className="link-btn" onClick={() => navigate('/SignUp')}>Don't have an account? Register here.</button>
+        </div>
             
         )
     }

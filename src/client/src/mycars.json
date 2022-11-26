@@ -1,0 +1,9 @@
+[{"car_company":"NISSAN","car_model":"TERRANO","rent":3000,"rating":"4.7","available":6},
+    {"car_company":"NISSAN","car_model":"ALMERA","rent":2000,"rating":"4.3","available":6},
+    {"car_company":"HONDA","car_model":"CITY","rent":2000,"rating":"4.9","available":6},
+    {"car_company":"HONDA","car_model":"CIVIC","rent":2000,"rating":"4.8","available":6},
+    {"car_company":"TOYOTA","car_model":"VELLFIRE","rent":5000,"rating":"4.2","available":6},
+    {"car_company":"TOYOTA","car_model":"COROLLA","rent":3000,"rating":"4.4","available":6},
+    {"car_company":"VOLKSWAGEN","car_model":"BEETLE","rent":5000,"rating":"4.7","available":6},
+    {"car_company":"TOYOTA","car_model":"INNOVA","rent":5000,"rating":"4.9","available":6},
+    {"car_company":"MERCEDES","car_model":"C320","rent":10000,"rating":"5.0","available":6}]
