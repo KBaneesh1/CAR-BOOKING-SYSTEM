@@ -52,7 +52,7 @@ function BookCar(){
         setUserBook({email,password,currcar,currmodel,fromdt,todt,totalamount});
         console.log(FullUserBook);
         axios.post('http://localhost:5000/FullUser',FullUserBook)
-        .then(res=>{console.log(res);
+        .then(res=>{alert(res.data.message);
         navigate('/SignUp');})
         
     }
