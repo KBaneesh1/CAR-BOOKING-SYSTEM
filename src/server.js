@@ -108,19 +108,45 @@ app.post('/FullUser',async(req,res)=>{
     const fulluser=req.body;
     MongoCLient.connect('mongodb://localhost:27017',(err,dbo)=>{
         if(err) throw err;
-        full_db=dbo.db('userbook')
-        full_coll=full_db.collection('coll_book');
+        full_db=dbo.db('caar_list')
+        full_coll=full_db.collection('userbook')
+        car_coll=full_db.collection('car_details')
         full_coll.findOne(fulluser,(err,docs)=>{
             if(err) throw err;
             if(docs){
                 console.log("already booked");
             }
-            else[
-                full_coll.insertOne(fulluser,(err,docs)=>{
+            else{
+                // full_coll.insertOne(fulluser,(err,book)=>{
+                //     if(err) throw err;
+                //     console.log(book+" appended");
+                // })
+                console.log("inside else:",)
+                car_coll.findOne({"car_company":fulluser.currcar,"car_model":fulluser.currmodel},(err,docs)=>{
                     if(err) throw err;
-                    console.log(docs+" appended");
+                    console.log(docs);
+                    if(docs){
+                        if(docs.available){
+                    const updatedocs={
+                        $set:{
+                            available:docs.available-1
+                        }
+                    }
+                    car_coll.updateOne(docs,updatedocs,(err,doc2)=>{
+                        if(err) throw err;
+                        console.log("car document updated successfully");
+                    })
+                    full_coll.insertOne(fulluser,(err,book)=>{
+                        if(err) throw err;
+                        console.log(book+" appended");
+                    })
+                }
+                else{
+                    res.send({message:"No available cars"});
+                }
+            }
                 })
-            ]
+            }
         })
     })
 })
