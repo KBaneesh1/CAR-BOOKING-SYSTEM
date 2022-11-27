@@ -1,5 +1,5 @@
 import React, { useContext, useState } from "react";
-import 'bootstrap';
+import "./cssfiles/signin.css";
 import axios from "axios";
 import { useEffect } from "react";
 import DefaultLayout from './DefaultLayout';
@@ -7,7 +7,7 @@ import {Row,Col} from 'antd';
 // import { getAllCars } from './redux/actions/carsActions';
 import { useNavigate } from "react-router-dom";
 import { SelectedCar } from "./context/select_car";
-import { set } from "mongoose";
+import './cssfiles/home.css'
 const Home = () => {
     const [cars,setAll]=useState([]);
     const navigate=useNavigate();
@@ -16,6 +16,7 @@ const Home = () => {
     
     },[])
     const {prescar,setpost}=useContext(SelectedCar);
+    
     
     // console.log(typeof(setpost))
     // var cars=[{"car_company":"NISSAN","car_model":"TERRANO","rent":3000,"rating":"4.7","available":6,"image":"./images/navara_nissan.png"},
@@ -41,10 +42,13 @@ const Home = () => {
                                         <div>
                                             <p>{car.car_company}</p>
                                             <p>{car.rent} Rent-Per-Day</p>
+                                            <p>{car.rent} RATING</p>
+                                            <p>AVAILABLE CARS:{car.available}</p>
                                         </div>
                                         <div>
                                             <button onClick={()=>{setpost(car);
-                                            navigate('/Booking')}}>Book Now</button>
+                                            navigate('/Booking')
+                                            }}>Book Now</button>
                                         </div>
 
                                     </div>

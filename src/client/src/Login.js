@@ -1,14 +1,17 @@
-import React,{useState} from "react";
-import './cssfiles/App.css';
+import React,{useContext, useState} from "react";
+import './cssfiles/signin.css';
 import axios from "axios";
 import {useNavigate} from "react-router-dom";
 import SignUp from "./SignUp";
 import 'bootstrap';
 import { Validator } from "react";
-const Login=({setLoginUser})=>{
+import { LoginDetails } from "./context/logincar";
+import DefaultLayout from "./DefaultLayout";
+const Login=()=>{
     const [user,setUser]=useState({
         email:"",password:""
       })
+    const {user1,setLoginUser}=useContext(LoginDetails);
       let name,value;
      const navigate=useNavigate();
       const onHandleChange=(e)=>{
@@ -68,6 +71,7 @@ const Login=({setLoginUser})=>{
 
   // </form>
   //           </div>
+  <DefaultLayout>
   <div className="auth-form-container">
             <h2>Login</h2>
             <form className="login-form" onSubmit={postdata}>
@@ -79,7 +83,7 @@ const Login=({setLoginUser})=>{
             </form>
             <button className="link-btn" onClick={() => navigate('/SignUp')}>Don't have an account? Register here.</button>
         </div>
-            
+        </DefaultLayout>
         )
     }
 export default Login
