@@ -1,35 +1,39 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 import 'bootstrap';
-// import axios from "axios";
+import axios from "axios";
+import { useEffect } from "react";
 import DefaultLayout from './DefaultLayout';
 import {Row,Col} from 'antd';
 // import { getAllCars } from './redux/actions/carsActions';
 import { useNavigate } from "react-router-dom";
 import { SelectedCar } from "./context/select_car";
+import { set } from "mongoose";
 const Home = () => {
- 
+    const [cars,setAll]=useState([]);
     const navigate=useNavigate();
-    // useEffect(()=>{
-    //     axios.get("").then(res=>{setpost(res)})
+    useEffect(()=>{
+        axios.get("http://localhost:5000/cardet").then(res=>{setAll(res.data)})
     
-    // },[])
+    },[])
     const {prescar,setpost}=useContext(SelectedCar);
-    console.log(typeof(setpost))
-    var cars=[{"car_company":"NISSAN","car_model":"TERRANO","rent":3000,"rating":"4.7","available":6,"image":"./images/navara_nissan.png"},
-    {"car_company":"NISSAN","car_model":"ALMERA","rent":2000,"rating":"4.3","available":6,"image":"./images/almera_nissan.jpg"},
-    {"car_company":"HONDA","car_model":"CITY","rent":2000,"rating":"4.9","available":6,"image":"./images/city_honda.png"},
-    {"car_company":"HONDA","car_model":"CIVIC","rent":2000,"rating":"4.8","available":6,"image":"./images/civic_honda.jpg"},
-    {"car_company":"TOYOTA","car_model":"VELLFIRE","rent":5000,"rating":"4.2","available":6,"image":"./images/vellfire_toyota.jpeg"},
-    {"car_company":"TOYOTA","car_model":"COROLLA","rent":3000,"rating":"4.4","available":6,"image":"./images/altis_toyota.png"},
-    {"car_company":"VOLKSWAGEN","car_model":"BEETLE","rent":5000,"rating":"4.7","available":6,"image":"./images/beetle_volkswagen.jpg"},
-    {"car_company":"TOYOTA","car_model":"INNOVA","rent":5000,"rating":"4.9","available":6,"image":"./images/innova_toyota.webp"},
-    {"car_company":"MERCEDES","car_model":"C320","rent":10000,"rating":"5.0","available":6,"image":"./images/c_mercedes.jpeg"}];
+    
+    // console.log(typeof(setpost))
+    // var cars=[{"car_company":"NISSAN","car_model":"TERRANO","rent":3000,"rating":"4.7","available":6,"image":"./images/navara_nissan.png"},
+    // {"car_company":"NISSAN","car_model":"ALMERA","rent":2000,"rating":"4.3","available":6,"image":"./images/almera_nissan.jpg"},
+    // {"car_company":"HONDA","car_model":"CITY","rent":2000,"rating":"4.9","available":6,"image":"./images/city_honda.png"},
+    // {"car_company":"HONDA","car_model":"CIVIC","rent":2000,"rating":"4.8","available":6,"image":"./images/civic_honda.jpg"},
+    // {"car_company":"TOYOTA","car_model":"VELLFIRE","rent":5000,"rating":"4.2","available":6,"image":"./images/vellfire_toyota.jpeg"},
+    // {"car_company":"TOYOTA","car_model":"COROLLA","rent":3000,"rating":"4.4","available":6,"image":"./images/altis_toyota.png"},
+    // {"car_company":"VOLKSWAGEN","car_model":"BEETLE","rent":5000,"rating":"4.7","available":6,"image":"./images/beetle_volkswagen.jpg"},
+    // {"car_company":"TOYOTA","car_model":"INNOVA","rent":5000,"rating":"4.9","available":6,"image":"./images/innova_toyota.webp"},
+    // {"car_company":"MERCEDES","car_model":"C320","rent":10000,"rating":"5.0","available":6,"image":"./images/c_mercedes.jpeg"}];
     
     return(
         <DefaultLayout>
             <Row justify="center" gutter={16}>
                     {
                         cars.map(car=>{
+                            
                             return <Col lg={5} sm={24} xs={24}>
                                <div className='car p-2 bs1 mt' >
                                     <img src={car.image} className='carimg'/>

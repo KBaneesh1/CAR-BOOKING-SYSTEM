@@ -95,11 +95,33 @@ app.get('/cardet',async(req,res)=>{
     var emp={}
     MongoCLient.connect('mongodb://localhost:27017',(err,dbo)=>{
         if(err) throw err;
-        car_db=dbo.db('car_list')
+        car_db=dbo.db('caar_list')
         car_coll=car_db.collection('car_details')
-        const docs= car_coll.find(); 
-        
-         res.send(docs)
+        car_coll.find({}).toArray((err,docs)=>{ 
+        if(err) throw err;
+        console.log(docs)
+         res.send(docs)})
 })
+})
+app.post('/FullUser',async(req,res)=>{
+    console.log("inside users booking details");
+    const fulluser=req.body;
+    MongoCLient.connect('mongodb://localhost:27017',(err,dbo)=>{
+        if(err) throw err;
+        full_db=dbo.db('userbook')
+        full_coll=full_db.collection('coll_book');
+        full_coll.findOne(fulluser,(err,docs)=>{
+            if(err) throw err;
+            if(docs){
+                console.log("already booked");
+            }
+            else[
+                full_coll.insertOne(fulluser,(err,docs)=>{
+                    if(err) throw err;
+                    console.log(docs+" appended");
+                })
+            ]
+        })
+    })
 })
 app.listen(5000,()=>console.log("server is listening at 5000"));

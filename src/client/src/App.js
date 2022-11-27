@@ -10,6 +10,7 @@ import Logout from "./Logout";
 import { BrowserRouter as Router,Route,Routes} from "react-router-dom"; //browser-router is for the browsing history in the browser
 import Booking from "./Booking";
 import { SelectedCar } from "./context/select_car";
+import { LoginDetails } from "./context/logincar";
 function App(){
 	const [user1,setLoginUser]=useState({});
 	const [prescar,setpost]=useState({})
@@ -20,8 +21,9 @@ function App(){
 		<div className="App">
 			<NavLinCom/>
 		</div>
-		<SelectedCar.Provider value={{prescar,setpost}}>
+		<LoginDetails.Provider value={{user1,setLoginUser}}>
 
+		<SelectedCar.Provider value={{prescar,setpost}}>
 		<Routes> 
 		
           <Route exact path="/" element={user1.email && user1.password ? <Home/> : <Login setLoginUser={setLoginUser}/>}/>
@@ -31,9 +33,11 @@ function App(){
 
 			<Route path="/SignUp" element={<SignUp/>}/>
 			<Route path="/logout" element={user1.email && user1.password ? <Logout setLoginUser={setLoginUser}/>:<Login setLoginUser={setLoginUser}/>}/>
-
+		
         </Routes>
 		</SelectedCar.Provider>
+		</LoginDetails.Provider>
+
 		</Router>
 
 	)
