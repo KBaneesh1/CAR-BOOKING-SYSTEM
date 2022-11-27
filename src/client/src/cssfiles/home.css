@@ -75,11 +75,11 @@ body {
   
   .car:hover>.car-content{
     opacity:1;
-    transform:translateY(-40px); 
+    transform:translateY(-30px); 
   }
   
   .car-content{
-    transform: translateY(-200px);
+    transform: translateY(-100px);
     opacity:0; /* hides data*/
     transition: 0.3s;
   }

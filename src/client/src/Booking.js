@@ -49,6 +49,7 @@ function BookCar(){
     var currcar=prescar.car_company;
     var currmodel=prescar.car_model;
     const handlesubmit=(e)=>{
+        e.preventDefault();
         setUserBook({email,password,currcar,currmodel,fromdt,todt,totalamount});
         console.log(FullUserBook);
         axios.post('http://localhost:5000/FullUser',FullUserBook)
@@ -72,17 +73,18 @@ function BookCar(){
                         <p># AVAILABLE: {prescar.available}</p>
                     </div>
                 </Col>
-
+                <form>
                 <Divider type='horizontal' dashed>Select Time Slot</Divider>
                 <RangePicker showTime={{format:'HH:mm'}} format='MMM DD YYYY HH:mm' onChange={SelectTimeSlot}></RangePicker>
                 <div>
                   <p>TOTAL TIME:{totalhour}</p>
                   <p>Rent-Per-Day: <b>{ prescar.rent }</b></p>
                   <h3>TOTAL AMOUNT: {totalamount}</h3> 
-                  <button className='btn1' onClick={handlesubmit}>Book Now</button> 
+                  <button type="submit" className='btn1' onClick={handlesubmit}>Book Now</button> 
                 </div>
+                </form>
             </Row>
-            
+           
 
         </DefaultLayout>
     
